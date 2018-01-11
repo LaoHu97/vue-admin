@@ -50,9 +50,9 @@
             更多菜单<i class="el-icon-arrow-down el-icon--right"></i>
           </el-button>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item @click="resourcesEdit(scope.$index, scope.row)">更新资源</el-dropdown-item>
-            <el-dropdown-item @click="handleEdit(scope.$index, scope.row)">{{scope.row.type == '1' ? '已置顶' : '置顶'}}</el-dropdown-item>
-            <el-dropdown-item @click="handleDel(scope.$index, scope.row)">删除</el-dropdown-item>
+            <el-dropdown-item @click.native="resourcesEdit(scope.$index, scope.row)">更新资源</el-dropdown-item>
+            <el-dropdown-item @click.native="handleEdit(scope.$index, scope.row)">{{scope.row.type == '1' ? '已置顶' : '置顶'}}</el-dropdown-item>
+            <el-dropdown-item @click.native="handleDel(scope.$index, scope.row)">删除</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
 				<!-- <el-button size="small" @click="resourcesEdit(scope.$index, scope.row)">更新资源</el-button>
@@ -68,7 +68,7 @@
     </el-pagination>
   </el-col>
   <!--更新资源界面-->
-  <el-dialog title="请输入百度网盘资源链接" v-model="editResourcesVisible" :close-on-click-modal="false">
+  <el-dialog title="请输入百度网盘资源链接" :visible.sync="editResourcesVisible" :close-on-click-modal="false">
     <el-form :model="ResourcesForm" label-position="right" label-width="80px" :rules="editResourcesRules" ref="ResourcesForm" style="text-align: center;">
       <el-form-item label="资源链接" prop="videoUrl">
         <el-input v-model="ResourcesForm.videoUrl" placeholder="请输入资源链接" auto-complete="off">
@@ -86,7 +86,7 @@
     </div>
   </el-dialog>
   <!--编辑界面-->
-  <el-dialog title="请上传轮播图片" v-model="editFormVisible" :close-on-click-modal="false">
+  <el-dialog title="请上传轮播图片" :visible.sync="editFormVisible" :close-on-click-modal="false">
     <el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm" style="text-align: center;">
       <el-upload class="avatar-uploader" action="https://lao47.xin/api/img_upload" :show-file-list="false" :on-success="handleCarouselSuccess" :before-upload="beforeAvatarUpload">
         <img v-if="editForm.topImg" :src="editForm.topImg" class="editForm-topImg">
@@ -100,7 +100,7 @@
   </el-dialog>
 
   <!--新增界面-->
-  <el-dialog title="新增视频" v-model="addFormVisible" :close-on-click-modal="false">
+  <el-dialog title="新增视频" :visible.sync="addFormVisible" :close-on-click-modal="false">
     <el-form :model="addForm" label-position="left" label-width="80px" :rules="addFormRules" ref="addForm">
       <el-form-item label="视频标题" prop="_id">
         <!-- <el-input v-model="addForm.title" placeholder="请输入视频标题" auto-complete="off"></el-input> -->
@@ -272,6 +272,7 @@ export default {
     //更新资源
     resourcesEdit(index, row) {
       this.editResourcesVisible = true;
+      console.log(this.editResourcesVisible)
       this.ResourcesForm.id = row.id;
     },
     resourcesSubmit: function() {
