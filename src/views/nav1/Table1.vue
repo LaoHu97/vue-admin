@@ -32,10 +32,19 @@
     </el-table-column>
     <el-table-column prop="videoUrl" label="RUL地址">
     </el-table-column>
-    <el-table-column label="操作" width="170">
+    <el-table-column label="操作" width="120">
       <template slot-scope="scope">
-					<el-button size="small" @click="resourcesEdit(scope.$index, scope.row)">更新资源</el-button>
-					<el-button type="danger" size="small" @click="handleDel(scope.$index, scope.row)">删除</el-button>
+        <el-dropdown>
+          <el-button type="primary" size="small">
+            更多菜单<i class="el-icon-arrow-down el-icon--right"></i>
+          </el-button>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item @click="resourcesEdit(scope.$index, scope.row)">更新资源</el-dropdown-item>
+            <el-dropdown-item @click="handleDel(scope.$index, scope.row)">删除</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+					<!-- <el-button size="small" @click="resourcesEdit(scope.$index, scope.row)">更新资源</el-button>
+					<el-button type="danger" size="small" @click="handleDel(scope.$index, scope.row)">删除</el-button> -->
 				</template>
     </el-table-column>
   </el-table>
