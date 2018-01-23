@@ -12,6 +12,7 @@ import Vuex from 'vuex'
 //import 'nprogress/nprogress.css'
 import routes from './routes'
 import axios from './api/index.js'
+import 'font-awesome/css/font-awesome.min.css'
 
 //CDN引入依赖包不需要Vue.user全局挂载
 Vue.use(ElementUI)

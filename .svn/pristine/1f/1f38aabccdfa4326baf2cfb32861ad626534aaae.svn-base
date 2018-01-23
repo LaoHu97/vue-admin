@@ -451,13 +451,13 @@ export default {
     },
     //获取用户列表
     getUsers() {
-      console.log('1')
       let para = {
         title: this.filters.title,
         page: this.page,
         rows: 10
       };
       this.listLoading = true;
+      //NProgress.start();
       getUserListPage(para).then((res) => {
         this.total = res.data.total;
         this.users = res.data.data
@@ -471,6 +471,7 @@ export default {
             sta.type = false
           }
         }
+        //NProgress.done();
       });
     },
     //删除
